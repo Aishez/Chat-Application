@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {dispatch} from "../store"; 
+import { dispatch } from "../store";
 
 const initialState = {
     sidebar: {
-         open: false,
+        open: false,
         type: "CONTACT",
     },
 };
 
 
 const slice = createSlice({
-    name: "app",
+    name: 'app',
     initialState,
     reducers: {
-        toggleSidebar(state,action){
+        toggleSidebar(state, action) {
             state.sidebar.open = !state.sidebar.open;
         },
-        updateSidebarType(state,action){ 
+        updateSidebarType(state, action) {
             state.sidebar.type = action.payload.type;
         }
     }
@@ -28,17 +28,17 @@ const slice = createSlice({
 export default slice.reducer;
 
 
-export function ToggleSidebar(){
+export function ToggleSidebar() {
     return async () => {
         dispatch(slice.actions.toggleSidebar());
     }
 }
 
-export function UpdateSidebarType(type){
+export function UpdateSidebarType(type) {
     return async () => {
-        dispatch(slice.actions.toggleSidebar({
-            type,
+        dispatch(slice.actions.updateSidebarType({
+            type
         }));
-    }
+    };
 }
 

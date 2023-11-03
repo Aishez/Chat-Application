@@ -6,7 +6,7 @@ import React from 'react'
 import { useTheme } from "@mui/material/styles"
 import StyledBadge from '../StyledBadge'
 import { ToggleSidebar } from '../../redux/slices/app'
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
     const theme = useTheme();
@@ -16,9 +16,9 @@ const Header = () => {
 
             <Stack alignItems={"center"} direction={"row"} justifyContent={"space-between"} sx={{ width: "100%", height: "100%" }}>
                 <Stack onClick={() => {
-                    dispatch(ToggleSidebar())
+                    dispatch(ToggleSidebar());
                 }}
-                direction={"row"} spacing={2} >
+                    direction={"row"} spacing={2} >
                     <Box>
                         <StyledBadge overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }} variant="dot">
                             <Avatar alt={faker.name.fullName()} src={faker.image.avatar()} />
