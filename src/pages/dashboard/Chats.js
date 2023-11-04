@@ -1,7 +1,7 @@
 import { Box, Typography, Stack, IconButton, InputBase, Button, Divider, Avatar, Badge } from '@mui/material'
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from 'phosphor-react';
 import { styled, alpha, useTheme } from '@mui/material/styles';
-import { Faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 import { ChatList } from "../../data";
 import { SimpleBarStyle } from "../../components/Scrollbar"
 import React from 'react';
@@ -52,11 +52,11 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
                     {online ?
 
                         <StyledBadge overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }} variant="dot">
-                            <Avatar src={Faker} />
+                            <Avatar src={faker.image.avatar()} />
                         </StyledBadge>
 
                         :
-                        <Avatar src={Faker} />
+                        <Avatar src={faker.image.avatar()} />
                     }
 
 
