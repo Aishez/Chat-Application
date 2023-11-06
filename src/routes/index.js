@@ -28,9 +28,9 @@ export default function Router() {
             element: <MainLayout />,
             children: [
                 { path: "login", element: <LoginPage /> },
-                // { path: "register", element: <RegisterPage /> },
-                // { path: "reset-password", element: <ResetPasswordPage /> },
-                // { path: "new-password", element: <NewPasswordPage /> },
+                { path: "register", element: <RegisterPage /> },
+                { path: "reset-password", element: <ResetPasswordPage /> },
+                { path: "new-password", element: <NewPasswordPage /> },
                 // { path: "verify", element: <VerifyPage /> },
             ],
         },
@@ -56,6 +56,18 @@ const GeneralApp = Loadable(
 
 const LoginPage = Loadable(
     lazy(() => import("../pages/auth/Login")),
+);
+
+const RegisterPage = Loadable(
+    lazy(() => import("../pages/auth/register")),
+);
+
+const ResetPasswordPage = Loadable(
+    lazy(() => import("../pages/auth/ResetPassword")),
+);
+
+const NewPasswordPage = Loadable(
+    lazy(() => import("../pages/auth/NewPassword")),
 );
 
 const Settings = Loadable(
