@@ -7,6 +7,7 @@ import DashboardLayout from "../layouts/dashboard";
 // config
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
+import MainLayout from "../layouts/main";
 
 
 // suspense : display a component when it is loaded until then diaplay fallback  works in dynamic loading
@@ -15,13 +16,24 @@ import LoadingScreen from "../components/LoadingScreen";
 const Loadable = (Component) => (props) => {
     return (
         <Suspense fallback={<LoadingScreen />}>
-            <Component {...props} />                                        
+            <Component {...props} />
         </Suspense>
     );
 };
 
 export default function Router() {
     return useRoutes([
+        {
+            path: "/auth",
+            element: <MainLayout />,
+            children: [
+                { path: "login", element: <LoginPage /> },
+                // { path: "register", element: <RegisterPage /> },
+                // { path: "reset-password", element: <ResetPasswordPage /> },
+                // { path: "new-password", element: <NewPasswordPage /> },
+                // { path: "verify", element: <VerifyPage /> },
+            ],
+        },
         {
             path: "/",
             element: <DashboardLayout />,
@@ -40,6 +52,10 @@ export default function Router() {
 
 const GeneralApp = Loadable(
     lazy(() => import("../pages/dashboard/GeneralApp")),
+);
+
+const LoginPage = Loadable(
+    lazy(() => import("../pages/auth/Login")),
 );
 
 const Settings = Loadable(
