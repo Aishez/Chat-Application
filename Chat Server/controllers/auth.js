@@ -3,7 +3,7 @@ const otpGenerator = require("otp-generator");
 const crypto = require("crypto");
 const User = require("../models/user");
 const { promisify } = require("util");
-
+const mailService = require("../services/mailer");
 
 
 const signToken = (userId) => jwt.sign({ userId }, process.env.JWT_SECRET);
@@ -84,11 +84,16 @@ exports.sendOTP = catchAsync(async (req, res, next) => {
 
     // TODO send mail
     mailService.sendEmail({
-        from: "shreyanshshah242@gmail.com",
+        from: "aishezsingh@gmail.com",
         to: user.email,
         subject: "Verification OTP",
+        text: `Your OTP is ${new_otp}. This is valid for 10 mins`,
         html: otp(user.firstName, new_otp),
         attachments: [],
+    }).then(() => {
+        
+    }).catch((err) => {
+
     });
 
     res.status(200).json({
