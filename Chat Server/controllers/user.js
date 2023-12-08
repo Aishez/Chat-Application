@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 
 
-exports.updateMe = catchAsync(async (req, res, next) => {
+exports.updateMe = async (req, res, next) => {
     const filteredBody = filterObj(
         req.body,
         "firstName",
@@ -12,11 +12,11 @@ exports.updateMe = catchAsync(async (req, res, next) => {
         "avatar"
     );
 
-    const userDoc = await User.findByIdAndUpdate(req.user._id, filteredBody, { new: true, ValidateModifiedOnly: true });
+    const userDoc = await User.create(filteredBody);
 
     res.status(200).json({
         status: "success",
         data: userDoc,
         message: "User Updated successfully",
     });
-});
+};
